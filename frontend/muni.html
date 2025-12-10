@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SF MUNI Live Tracker</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="muni.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>SF MUNI Live Tracker</h1>
+    <div class="live-indicator">
+        <div class="pulse"></div>
+        <span id="update-time">Loading...</span>
+    </div>
+</div>
+
+<div class="container">
+    <div id="map"></div>
+    
+    <div class="sidebar">
+        <div class="filter-section">
+            <label for="rid">Filter Routes</label>
+            <div class="filter-controls">
+                <input type="text" id="rid" placeholder="1, 5, 38R, N, ...">
+                <div class="button-row">
+                    <button class="btn btn-primary" id="apply-btn">Apply</button>
+                    <button class="btn btn-secondary" id="clear-btn">Clear</button>
+                </div>
+                <button class="btn btn-stops" id="toggle-stops-btn">Show Stops</button>
+            </div>
+        </div>
+        
+        <div class="stats-mini">
+            <div class="stat-mini">
+                <div class="stat-mini-value" id="bus-count">0</div>
+                <div class="stat-mini-label">Buses</div>
+            </div>
+            <div class="stat-mini">
+                <div class="stat-mini-value" id="route-count">0</div>
+                <div class="stat-mini-label">Routes</div>
+            </div>
+        </div>
+        
+        <div class="route-list"></div>
+    </div>
+</div>
+
+<!-- Custom JS -->
+<script src="muni.js"></script>
+
+</body>
+</html>

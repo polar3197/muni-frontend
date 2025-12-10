@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f9fafb;
+    color: #1a202c;
+}
+
+.header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0fdf4;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #86efac;
+    font-size: 0.8rem;
+    color: #166534;
+}
+
+.pulse {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+    padding: 16px;
+    gap: 16px;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+#map {
+    flex: 1;
+    min-width: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.sidebar {
+    width: 320px;
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+    max-height: 50vh;
+}
+
+.llm-interface {
+    width: 320px;
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: calc(50vh - 8px);
+    min-height: 300px;
+}
+
+.llm-header {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a202c;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 8px;
+}
+
+.llm-chat-area {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px;
+    background: #fafafa;
+    min-height: 200px;
+}
+
+.llm-chat-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.llm-chat-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.llm-chat-area::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.llm-input-area {
+    display: flex;
+    gap: 8px;
+}
+
+.llm-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    resize: none;
+}
+
+.llm-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.llm-send-btn {
+    padding: 10px 16px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.llm-send-btn:hover {
+    background: #4f46e5;
+}
+
+.sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.filter-section label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.filter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-controls input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.button-row {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-controls input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+    background: #6366f1;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #4f46e5;
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+.btn-stops {
+    background: #10b981;
+    color: white;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn-stops:hover {
+    background: #059669;
+}
+
+.stats-mini {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.stat-mini {
+    text-align: center;
+}
+
+.stat-mini-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.stat-mini-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.route-list {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 8px;
+    background: #fafafa;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.route-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.route-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.route-list::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.route-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 6px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.route-card:hover {
+    border-color: #6366f1;
+    transform: translateX(2px);
+    box-shadow: 0 2px 4px rgba(99, 102, 241, 0.1);
+}
+
+.route-id {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-right: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.route-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.route-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #4b5563;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.route-count {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.legend {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: 1px solid #e5e7eb;
+}
+
+.legend h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 0;
+    font-size: 0.75rem;
+    color: #4b5563;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.vehicle-label {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.stop-marker {
+    background: transparent;
+    border: none;
+}
+
+/* Leaflet popup styling */
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.leaflet-popup-content {
+    margin: 12px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Leaflet tooltip styling */
+.leaflet-tooltip {
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 8px 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.leaflet-tooltip strong {
+    color: #1a202c;
+}
+
+.leaflet-tooltip-top:before {
+    border-top-color: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 12px;
+    }
+    
+    #map {
+        height: 400px;
+        order: 1;
+    }
+    
+    .sidebar-wrapper {
+        width: 100%;
+        order: 2;
+    }
+    
+    .sidebar {
+        width: 100%;
+        max-height: none;
+    }
+    
+    .llm-interface {
+        width: 100%;
+        max-height: 400px;
+    }
+    
+    .route-list {
+        max-height: 300px;
+    }
+}
