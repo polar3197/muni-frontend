@@ -109,65 +109,7 @@ body {
     padding-bottom: 8px;
 }
 
-.llm-chat-area {
-    flex: 1;
-    overflow-y: auto;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    padding: 12px;
-    background: #fafafa;
-    min-height: 200px;
-}
 
-.llm-chat-area::-webkit-scrollbar {
-    width: 6px;
-}
-
-.llm-chat-area::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.llm-chat-area::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 3px;
-}
-
-.llm-input-area {
-    display: flex;
-    gap: 8px;
-}
-
-.llm-input {
-    flex: 1;
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    font-family: 'Inter', sans-serif;
-    resize: none;
-}
-
-.llm-input:focus {
-    outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-.llm-send-btn {
-    padding: 10px 16px;
-    background: #6366f1;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.llm-send-btn:hover {
-    background: #4f46e5;
-}
 
 .sidebar-wrapper {
     display: flex;
@@ -226,18 +168,18 @@ body {
     color: white;
 }
 
-.btn-primary:hover {
+/* .btn-primary:hover {
     background: #4f46e5;
-}
+} */
 
 .btn-secondary {
     background: #f3f4f6;
     color: #6b7280;
 }
 
-.btn-secondary:hover {
+/* .btn-secondary:hover {
     background: #e5e7eb;
-}
+} */
 
 .btn-stops {
     background: #10b981;
@@ -246,9 +188,9 @@ body {
     margin-top: 8px;
 }
 
-.btn-stops:hover {
+/* .btn-stops:hover {
     background: #059669;
-}
+} */
 
 .stats-mini {
     display: flex;
@@ -349,6 +291,10 @@ body {
     font-size: 0.75rem;
     color: #6b7280;
     margin-top: 2px;
+}
+
+.chat-window {
+    flex: 1
 }
 
 .legend {
