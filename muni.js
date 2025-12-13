@@ -60,7 +60,7 @@ window.addEventListener('load', function() {
         vehicleMarkers = [];
         routeCounts = {};
         
-        fetch("https://another-northern-epinions-wallpaper.trycloudflare.com/vehicles/current", {
+        fetch("https://postings-gel-observer-undergraduate.trycloudflare.com/vehicles/current", {
             headers: { "ngrok-skip-browser-warning": "true" }
         })
         .then(response => response.json())
