@@ -197,78 +197,6 @@ window.addEventListener('load', function() {
         }
     }
 
-    function showStops() {
-        console.log('showStops called');
-        hideStops(); // Clear existing stops first
-        
-        const routesToShow = route_filtered_list.length > 0 
-            ? route_filtered_list.join(',') 
-            : null;
-        
-        console.log('Routes to show stops for:', routesToShow);
-        
-        if (!routesToShow) {
-            alert('Please select or filter to a route first before showing stops');
-            return;
-        }
-        
-        fetch(`https://determining-undertake-insider-typing.trycloudflare.com/stops?route_ids=${routesToShow}`, {
-            headers: { "ngrok-skip-browser-warning": "true" }
-        })
-        .then(response => response.json())
-        .then(stops => {
-            console.log('Fetched stops:', stops.length);
-            
-            if (stops.length === 0) {
-                alert(`No stops found for route(s): ${routesToShow}. The stop_times data may not be loaded yet.`);
-                return;
-            }
-            
-            stops.forEach(stop => {
-                const stopIcon = L.divIcon({
-                    className: 'stop-marker',
-                    html: `<div style="background: white; border: 2px solid #6366f1; border-radius: 50%; width: 10px; height: 10px;"></div>`,
-                    iconSize: [10, 10]
-                });
-                
-                const marker = L.marker([stop.lat, stop.lon], { icon: stopIcon }).addTo(map);
-                
-                marker.bindPopup(`
-                    <div style="min-width: 180px;">
-                        <h3 style="margin: 0 0 8px 0; color: #1a202c; font-size: 0.95rem;">${stop.name}</h3>
-                        <div style="font-size: 0.85rem; color: #6b7280;">
-                            <strong>Stop ID:</strong> ${stop.stop_id}<br>
-                            <strong>Location:</strong> ${stop.lat.toFixed(5)}, ${stop.lon.toFixed(5)}
-                        </div>
-                    </div>
-                `);
-                
-                stopMarkers.push(marker);
-            });
-            
-            showingStops = true;
-            updateStopButtonText();
-        })
-        .catch(error => {
-            console.error("Error fetching stops:", error);
-            alert('Error loading stops. Check console for details.');
-        });
-    }
-
-    function hideStops() {
-        stopMarkers.forEach(marker => map.removeLayer(marker));
-        stopMarkers = [];
-        showingStops = false;
-        updateStopButtonText();
-    }
-
-    function updateStopButtonText() {
-        const btn = document.getElementById('toggle-stops-btn');
-        if (btn) {
-            btn.textContent = showingStops ? 'Hide Stops' : 'Show Stops';
-        }
-    }
-
     function getUserLocation() {
         if (!navigator.geolocation) {
             console.log('Geolocation is not supported by your browser');
@@ -319,7 +247,7 @@ window.addEventListener('load', function() {
                 }).addTo(map);
 
                 // Center map on user location
-                map.setView([lat, lon], 15);
+                // map.setView([lat, lon], 15);
             },
             // Error callback
             (error) => {

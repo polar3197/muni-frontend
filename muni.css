@@ -85,36 +85,27 @@ body {
     flex-direction: column;
     gap: 16px;
     min-height: 0;
-    max-height: 50vh;
+    /* max-height: 50vh; */
 }
-
-.llm-interface {
-    width: 320px;
-    background: white;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-height: calc(50vh - 8px);
-    min-height: 300px;
-}
-
-.llm-header {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #1a202c;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 8px;
-}
-
-
 
 .sidebar-wrapper {
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.chat-window {
+    flex: 3;
+    flex-direction: column;
+    border: 1px solid #ccc;
+}
+
+.chat-section {
+    margin-top: 16px;           /* Space above it (separates from routes) */
+    padding: 12px;              /* Padding inside */
+    background: #f9fafb;        /* Light background */
+    border: 1px solid #e5e7eb;  /* Border around the whole section */
+    border-radius: 8px;         /* Rounded corners */
 }
 
 .filter-section label {
@@ -165,6 +156,7 @@ body {
 
 .btn-primary {
     background: #6366f1;
+    width: 50%;
     color: white;
 }
 
@@ -174,6 +166,7 @@ body {
 
 .btn-secondary {
     background: #f3f4f6;
+    width: 50%;
     color: #6b7280;
 }
 
@@ -291,10 +284,6 @@ body {
     font-size: 0.75rem;
     color: #6b7280;
     margin-top: 2px;
-}
-
-.chat-window {
-    flex: 1
 }
 
 .legend {
