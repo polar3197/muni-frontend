@@ -317,13 +317,13 @@ chatSendButton.addEventListener('click', async function() {
     
     try {
         // Call your FastAPI endpoint
-        const response = await fetch('https://quote-boxes-featured-other.trycloudflare.com/api/llm-query', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ prompt: userMessage })
-        });
+        // const response = await fetch('https://quote-boxes-featured-other.trycloudflare.com/api/llm-query', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({ prompt: userMessage })
+        // });
         
         const data = await response.json();
         
@@ -331,7 +331,7 @@ chatSendButton.addEventListener('click', async function() {
         addMessage("MUNI Agent: " + data.message, 'assistant');
         
     } catch (error) {
-        addMessage('Sorry, something went wrong!', 'assistant');
+        addMessage('Chat assistant being built', 'assistant');
         console.error('Error:', error);
     } finally {
         // Re-enable button
