@@ -60,7 +60,7 @@ window.addEventListener('load', function() {
         vehicleMarkers = [];
         routeCounts = {};
         
-        fetch("https://postings-gel-observer-undergraduate.trycloudflare.com/vehicles/current", {
+        fetch("https://quote-boxes-featured-other.trycloudflare.com/vehicles/current", {
             headers: { "ngrok-skip-browser-warning": "true" }
         })
         .then(response => response.json())
@@ -276,85 +276,73 @@ window.addEventListener('load', function() {
     });
 
     // ===== BUTTON EVENT LISTENERS =====
-    document.getElementById('apply-btn').addEventListener('click', applyRouteFilter);
-    document.getElementById('clear-btn').addEventListener('click', clearFilters);
-    document.getElementById('toggle-stops-btn').addEventListener('click', toggleStops);
-    // document.getElementById('llm-send').addEventListener('click', sendLLMMessage);
-    // document.getElementById('llm-input').addEventListener('keypress', function(e) {
-    //     if (e.key === 'Enter' && !e.shiftKey) {
-    //         e.preventDefault();
-    //         sendLLMMessage();
-    //     }
-    // });
-
-    function sendLLMMessage() {
-        const input = document.getElementById('llm-input');
-        const chatArea = document.getElementById('llm-chat');
-        const message = input.value.trim();
-        
-        if (!message) return;
-        
-        // Clear placeholder if it's the first message
-        if (chatArea.children.length === 1 && chatArea.children[0].style.color === 'rgb(107, 114, 128)') {
-            chatArea.innerHTML = '';
-        }
-        
-        // Add user message to chat
-        const userMsg = document.createElement('div');
-        userMsg.style.cssText = 'background: #e0e7ff; padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.875rem; animation: fadeIn 0.3s;';
-        userMsg.innerHTML = `<div style="font-weight: 600; margin-bottom: 4px; color: #4338ca;">You</div><div>${message}</div>`;
-        chatArea.appendChild(userMsg);
-        
-        // Clear input
-        input.value = '';
-        
-        // Show typing indicator
-        const typingMsg = document.createElement('div');
-        typingMsg.id = 'typing-indicator';
-        typingMsg.style.cssText = 'background: #f3f4f6; padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.875rem; color: #6b7280;';
-        typingMsg.innerHTML = `<div style="font-weight: 600; margin-bottom: 4px;">Assistant</div><div>Thinking...</div>`;
-        chatArea.appendChild(typingMsg);
-        chatArea.scrollTop = chatArea.scrollHeight;
-        
-        // TODO: Replace this with your actual LLM API call
-        // Example: Call Claude API, OpenAI, or your backend
-        setTimeout(() => {
-            // Remove typing indicator
-            const typing = document.getElementById('typing-indicator');
-            if (typing) typing.remove();
-            
-            // Add bot response
-            const botMsg = document.createElement('div');
-            botMsg.style.cssText = 'background: #f3f4f6; padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.875rem; animation: fadeIn 0.3s;';
-            
-            // Example response - replace with actual LLM API response
-            let response = generateMockResponse(message);
-            
-            botMsg.innerHTML = `<div style="font-weight: 600; margin-bottom: 4px; color: #059669;">Assistant</div><div>${response}</div>`;
-            chatArea.appendChild(botMsg);
-            
-            // Scroll to bottom
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }, 1000);
-    }
+    // document.getElementById('apply-btn').addEventListener('click', applyRouteFilter);
+    // document.getElementById('clear-btn').addEventListener('click', clearFilters);
+    // document.getElementById('toggle-stops-btn').addEventListener('click', toggleStops);
     
-    function generateMockResponse(message) {
-        // This is a placeholder - replace with actual LLM API call
-        const lowerMsg = message.toLowerCase();
-        
-        if (lowerMsg.includes('route') || lowerMsg.includes('line')) {
-            return `There are ${document.getElementById('route-count').textContent} active routes right now. You can filter by route using the search box above, or click any route card to see its vehicles and stops.`;
-        } else if (lowerMsg.includes('stop')) {
-            return `To see stops for a route, first select or filter to a specific route, then click the "Show Stops" button. You can click any stop marker to see its details.`;
-        } else if (lowerMsg.includes('bus') || lowerMsg.includes('vehicle')) {
-            return `There are currently ${document.getElementById('bus-count').textContent} active buses. Click any bus icon on the map to see its speed, direction, and next stop.`;
-        } else if (lowerMsg.includes('how') || lowerMsg.includes('help')) {
-            return `I can help you with:<br>• Finding routes and stops<br>• Real-time bus locations<br>• Next stops and arrival info<br>• Route filtering and navigation<br><br>Try asking about specific routes or stops!`;
-        } else {
-            return `I'm a demo assistant. To integrate a real LLM:<br><br>1. Add your API key (Claude, OpenAI, etc.)<br>2. Replace the generateMockResponse() function<br>3. Send queries with context about current routes, stops, and vehicles<br><br>Your question: "${message}"`;
-        }
-    }
 
     updateVehicles();
     pollInterval = setInterval(updateVehicles, 30000);
+});
+
+
+// ===== CHAT FUNCTIONALITY =====
+// Add the chat code here (outside the load event listener)
+
+// Get references to the chat elements
+const chatMessages = document.querySelector('.chat-messages');
+const chatInput = document.querySelector('.chat-input input');
+const chatSendButton = document.querySelector('.chat-input button');
+
+// Function to add a message to the chat
+function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${sender}`;
+    messageDiv.textContent = text;
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// When user clicks Send button
+chatSendButton.addEventListener('click', async function() {
+    const userMessage = chatInput.value.trim();
+    if (userMessage === '') return;
+    
+    addMessage('> ' + userMessage, 'user');
+    chatInput.value = '';
+    
+    chatSendButton.disabled = true;
+    chatSendButton.textContent = '...';
+    
+    try {
+        // Call your FastAPI endpoint
+        const response = await fetch('https://quote-boxes-featured-other.trycloudflare.com/api/llm-query', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ prompt: userMessage })
+        });
+        
+        const data = await response.json();
+        
+        // Show the response
+        addMessage("MUNI Agent: " + data.message, 'assistant');
+        
+    } catch (error) {
+        addMessage('Sorry, something went wrong!', 'assistant');
+        console.error('Error:', error);
+    } finally {
+        // Re-enable button
+        chatSendButton.disabled = false;
+        chatSendButton.textContent = 'Send';
+    }
+});
+
+// Send on Enter key
+chatInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        chatSendButton.click();
+    }
 });
