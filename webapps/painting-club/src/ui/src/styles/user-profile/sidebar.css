@@ -1,0 +1,42 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: rgb(232, 209, 117);
+    height: 100vh;
+    padding-top: 3vh;
+    gap: 5vh;
+    transition: flex 0.6s ease;
+    border-right: black 4px double;
+}
+
+.sidebar.open {
+    flex: 20;
+}
+
+.sidebar.closed {
+    flex: 3;
+}
+
+.sidebar button {
+
+    width: 3vw;
+    height: 3vw;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.closed button {
+    transform: rotate(-90deg);
+}
+
+.sidebar.open button {
+    transform: rotate(0deg);
+}
+
+.sidebar-element {
+    position: relative;
+    width: 90%;
+    height: 5%;
+    border: 1px black solid;
+}

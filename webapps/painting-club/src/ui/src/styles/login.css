@@ -1,0 +1,104 @@
+.login-container {
+  display: grid;
+  grid-template-rows: 2fr 6fr;
+  row-gap: 10px;
+  position: absolute;
+  bottom: 3rem;
+  left: 4rem;
+  z-index: 1;
+  /* border: 1px black solid; */
+  width: 130px;
+  height: 100px;
+}
+
+.login-footer {
+  border: transparent;
+}
+
+.login-footer button {
+  background-color: transparent;
+  border: 1px black solid;
+  padding: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.login-footer button:hover {
+  background-color: rgb(72, 111, 204);
+  border-color: transparent;
+}
+
+.login-body {
+  height: 100%;
+  width: 100%;
+  /* border: 1px black solid; */
+}
+
+.non-member {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.non-member button {
+  background: transparent;
+  color: #3a3a3a;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
+}
+
+.non-member button:hover {
+  background: #0c8c6e;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 130px;
+  gap: 5px;
+}
+
+.user-form input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000;
+  color: #000000;
+  outline: none;
+  width: 100%; /* Remove flex, use full width */
+  box-sizing: border-box; /* Important for proper sizing */
+}
+
+.input-wrapper {
+  display: grid; /* Changed from flex to grid */
+  grid-template-columns: 30px 1fr; /* Label takes minimum space, input takes rest */
+  align-items: center;
+}
+
+.input-title {
+  white-space: nowrap; /* Prevents label from wrapping */
+}
+
+.user-form button {
+  background: transparent;
+  color: #3a3a3a;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.user-form button:hover{
+  background: #0c8c6e;
+}
+
+.user-form button:active{
+  background: #0c8c6e;
+}
+
+.error {
+  color: #b00020;
+}

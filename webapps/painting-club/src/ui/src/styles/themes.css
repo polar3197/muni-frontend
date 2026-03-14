@@ -1,0 +1,21 @@
+.themes {
+  position: absolute;
+  top: 0.5vh;
+  right: 0.5vw;
+  z-index: 1;
+  border: 1px solid black;
+  height: 15vh;
+  width: 10vw;
+  color: black;
+  background-color: transparent;
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.theme {
+  height: 25%;
+  width: 100%;
+  border: 1px black solid;
+}

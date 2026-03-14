@@ -1,0 +1,19 @@
+# this file allows importing functions from the src 
+# directory tree. 
+# for example: src/db/client.py -> from db.client import PostgreSQLClient
+
+# just need to run 'pip install -e .' to initialize
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "template-package"
+version = "0.1.0"
+
+[tool.setuptools]
+py-modules = ["config"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

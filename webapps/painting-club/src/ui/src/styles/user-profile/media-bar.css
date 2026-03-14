@@ -1,0 +1,8 @@
+
+
+.media-bar {
+    flex: 1;
+    width: 100%;
+    background-color: orange;
+    border: 1px black solid;
+}
